@@ -1,0 +1,9 @@
+{
+  "short_name": "SOPS App",
+  "name": "Secured Online Purchase System",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
