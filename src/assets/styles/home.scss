@@ -1,0 +1,27 @@
+@media (min-width: 768px) {
+    .welcome-title {
+    
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        top: 19.5%;
+        white-space: nowrap;
+        font-weight: bolder;
+        font-size: xx-large;
+      
+}
+}
+
+@media (max-width: 768px) {
+.welcome-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    top: calc(0% + 138px + 75px);
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: x-large;
+}
+}

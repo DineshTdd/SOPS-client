@@ -6,8 +6,9 @@ import Home from "./components/Home";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "connected-react-router";
 import { store } from "./index";
+import { loadStripe } from "@stripe/stripe-js";
 export const history = createBrowserHistory();
-
+export const stripePromise = loadStripe("pk_test_jfLyoEJul7aOrRH8xCH6jzUa005KBxRk3V");
 function App() {
   return (
     <div className="App" style={{ height: "100vh", width: "100%" }}>
@@ -26,8 +27,14 @@ function App() {
                 )
               }
             />
-            <Route path="/signin" exact component={SignIn} />
-            <Route path="/signup" exact component={SignUp} />
+            <Route
+              path="/signin"
+              render={() => (store.getState().auth.isUserLoggedIn ? <Home /> : <SignIn />)}
+            />
+            <Route
+              path="/signup"
+              render={() => (store.getState().auth.isUserLoggedIn ? <Home /> : <SignUp />)}
+            />
           </>
         </ConnectedRouter>
       </Router>

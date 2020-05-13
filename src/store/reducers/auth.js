@@ -1,11 +1,11 @@
-import { SET_USER_SESSION } from "../actions/auth";
+import { SET_USER_SESSION, REMOVE_USER_SESSION } from "../actions/auth";
 let token = localStorage.getItem("Authorization");
 let _id = localStorage.getItem("_id");
 let email = localStorage.getItem("email");
 let username = localStorage.getItem("username");
 let loggedInAt = localStorage.getItem("loggedInAt");
 const initialState = {
-  isUserLoggedIn: token !== undefined ? true : false,
+  isUserLoggedIn: token ? true : false,
   userData: {
     _id: _id !== null || _id !== undefined ? _id : undefined,
     token: token !== null || token !== undefined ? token : undefined,
@@ -35,6 +35,23 @@ const authReducer = (state = initialState, action) => {
           email,
           username,
           loggedInAt: createdAt,
+        },
+      };
+    case REMOVE_USER_SESSION:
+      localStorage.removeItem("Authorization");
+      localStorage.removeItem("_id");
+      localStorage.removeItem("email");
+      localStorage.removeItem("username");
+      localStorage.removeItem("loggedInAt");
+      return {
+        ...state,
+        isUserLoggedIn: false,
+        userData: {
+          _id: undefined,
+          token: undefined,
+          email: undefined,
+          username: undefined,
+          loggedInAt: undefined,
         },
       };
     default:
